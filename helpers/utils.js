@@ -1,5 +1,5 @@
 
-//Funstion to generate a unique email 
+//Function to generate a unique email 
 
 const generateUniqueEmail = () => {
     const timestamp = new Date().getTime()
