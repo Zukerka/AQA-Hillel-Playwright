@@ -1,10 +1,7 @@
 const {test, expect} = require('@playwright/test')
 const {generateUniqueEmail} = require('../helpers/utils')
-
-// const generateUniqueEmail = () => {
-//     const timestamp = new Date().getTime()
-//     return `testing+${timestamp}@test.io`
-// }
+// import { generateUniqueEmail } from '../helpers/utils'
+// import {test, expect} from '@playwright/test' 
 
 test('User registration', async ({page}) => {
 
@@ -16,9 +13,10 @@ test('User registration', async ({page}) => {
     const repeatPasswordInput = page.locator('#signupRepeatPassword')
     const registerBtn = page.getByRole('button', {name: 'Register'})
 
-    const uniqueEmail = generateUniqueEmail()
+    const uniqueEmail = generateUniqueEmail()   
 
-    await page.goto('https://guest:welcome2qauto@qauto.forstudy.space/')
+    await page.goto('')
+
     await signUpBtn.click()
     await nameInput.fill('Natalia')
     await lastNameInput.fill('None')
