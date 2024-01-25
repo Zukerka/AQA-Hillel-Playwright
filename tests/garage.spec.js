@@ -13,18 +13,17 @@ test.describe('Garage tests', () => {
         await garagePage.addCarBrand.selectOption('Porsche')
         await garagePage.addCarModel.selectOption('Panamera')
         await garagePage.addCarMiles.click()
-        await garagePage.addCarMiles.fill('120')
+        await garagePage.addCarMiles.fill('1')
         await garagePage.addBtn.click() 
 
         expect (garagePage.addFuelBtn.first()).toBeEnabled()
         await garagePage.addFuelBtn.first().click() 
         await garagePage.addExpensedMiles.click()
         
-        const currentExpenseMiles = garagePage.addExpensedMiles.inputValue()
-        console.log(currentExpenseMiles)
-        const newValue = currentExpenseMiles ? (parseInt(currentExpenseMiles) + 1).toString() : '1';
+        const currentExpenseMiles = await garagePage.addExpensedMiles.inputValue()
+        const newValue = currentExpenseMiles ? (parseInt(currentExpenseMiles) + 1).toString() : '2';
     
-        await garagePage.addExpensedMiles.type(newValue, { clear: true })
+        await garagePage.addExpensedMiles.fill(newValue, { clear: true })
         await garagePage.addExpensedLitres.click()
         await garagePage.addExpensedLitres.fill('2')
         await garagePage.addExpensesTotal.click()
@@ -34,7 +33,7 @@ test.describe('Garage tests', () => {
         expect(page.locator('p.alert alert-danger')).toBeHidden(); 
         await garagePage.addBtn.click()
 
-        await fuelPage.addExpenseBtn.click()
+        expect(fuelPage.newTableLine).toBe('20.00 USD')
 
         await page.pause()
 
