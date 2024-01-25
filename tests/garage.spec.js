@@ -8,6 +8,9 @@ test.describe('Garage tests', () => {
         const garagePage = new GaragePage(page) 
         const fuelPage = new FuelExpenses(page) 
 
+        const liters = '2'; 
+        const cost = '20'; 
+
         await page.goto('/panel/garage')
         await garagePage.addCarBtn.click()
         await garagePage.addCarBrand.selectOption('Porsche')
@@ -25,17 +28,22 @@ test.describe('Garage tests', () => {
     
         await garagePage.addExpensedMiles.fill(newValue, { clear: true })
         await garagePage.addExpensedLitres.click()
-        await garagePage.addExpensedLitres.fill('2')
+        await garagePage.addExpensedLitres.fill(liters)
         await garagePage.addExpensesTotal.click()
-        await garagePage.addExpensesTotal.fill('20')
+        await garagePage.addExpensesTotal.fill(cost)
 
         expect (garagePage.addBtn).toBeEnabled()
         expect(page.locator('p.alert alert-danger')).toBeHidden(); 
         await garagePage.addBtn.click()
 
-        expect(fuelPage.newTableLine).toBe('20.00 USD')
+        const mileageCellContent = await fuelPage.mileage.textContent()
+        expect (mileageCellContent).toBe(newValue)
 
-        await page.pause()
+        const litersCellContent = await fuelPage.litersUsed.textContent()
+        expect (litersCellContent).toBe(`${liters}L`)
+
+        const priceCellContent = await fuelPage.totalCost.textContent()
+        expect(priceCellContent).toBe(`${cost}.00 USD`)
 
     })
 
