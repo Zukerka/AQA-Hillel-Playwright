@@ -1,9 +1,9 @@
 import {test, expect} from "@playwright/test"
 import { ProfilePage } from "./POM/profile.page"
 
-test.describe('Update Profile tests', async()=> {
+test.describe('Update Profile tests', () => {
 
-    test('Update profile avatar', async ({page}) => {
+    test.only('Update profile avatar', async ({page}) => {
         const profilePage = new ProfilePage(page)
     
         await page.goto('/panel/profile')

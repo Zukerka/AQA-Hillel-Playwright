@@ -51,17 +51,23 @@ module.exports = defineConfig({
       dependencies: ['setup'],
     },
 
-    // {
-    //   name: 'firefox',
-    //   use: { ...devices['Desktop Firefox'] },
-    //   dependencies: ['setup'],
-    // },
+    {
+      name: 'firefox',
+      use: { 
+        ...devices['Desktop Firefox'],
+        storageState: 'auth.json'
+      },
+      dependencies: ['setup'],
+    },
 
-    // {
-    //   name: 'webkit',
-    //   use: { ...devices['Desktop Safari'] },
-    //   dependencies: ['setup'],
-    // },
+    {
+      name: 'webkit',
+      use: { 
+        ...devices['Desktop Safari'],
+        storageState: 'auth.json'
+       },
+      dependencies: ['setup'],
+    },
 
     /* Test against mobile viewports. */
     // {
