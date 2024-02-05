@@ -4,7 +4,7 @@ import { FuelExpenses } from "./POM/fuelExpenses.page"
 
 test.describe('Garage tests', () => {
     
-    test.only('Adding new car', async({page}) => {
+    test('Adding new car', async({page}) => {
         const garagePage = new GaragePage(page) 
         const fuelPage = new FuelExpenses(page) 
 
