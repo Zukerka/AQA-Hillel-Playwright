@@ -6,11 +6,9 @@ test.describe('Update Profile tests', () => {
     test.only('Update profile avatar', async ({page}) => {
         const profilePage = new ProfilePage(page)
     
-        // await page.goto('/panel/profile')
-        await profilePage.open()
+        await page.goto('/panel/profile')
         await profilePage.editProfileBtn.click()
-        // await page.setInputFiles(profilePage.editPhoto, 'fixtures/mario.png')
-        await profilePage.setInputFiles('fixtures/mario.png')
+        await page.setInputFiles(profilePage.editPhoto, 'fixtures/mario.png')
         await profilePage.saveBtn.click()
         await expect(profilePage.successSnackBar).toBeVisible()
 
