@@ -1,5 +1,6 @@
-// @ts-nocheck
-const { defineConfig, devices } = require('@playwright/test');
+
+// const { defineConfig, devices } = require('@playwright/test');
+import { defineConfig, devices } from '@playwright/test'
 
 /**
  * Read environment variables from file.
@@ -28,8 +29,8 @@ module.exports = defineConfig({
     baseURL: 'https://qauto.forstudy.space',
 
     httpCredentials: {
-      username: process.env.HTTP_USERNAME,
-      password: process.env.HTTP_PASSWORD, 
+      username: `${process.env.HTTP_USERNAME}`,
+      password: `${process.env.HTTP_PASSWORD}`, 
     },
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
